@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 import { BooklistingComponent } from './dashboard/booklisting/booklisting.component';
-import { BookComponent } from './dashboard/book/book.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 
 const routes: Routes = [
-  {path:'', component: BooklistingComponent},
-  {path:'books', component: BookComponent }
-  
+  {path:'', component: LoginComponent},
+  {path:'books',
+   loadChildren: () => import('./dashboard/dashboard.module').then(m=> m.DashboardModule)},
+  {path:'customers', 
+   loadChildren: () => import('./customer/customer.module').then(m=> m.CustomerModule)}
 ];
 
 @NgModule({
